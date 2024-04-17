@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="textLoc"></div>
+    <label id="updateBrandonText">Brandon: </label>
+    <label id="updateSamText">Sam: </label>
+    <textarea id="brandontext"></textarea>
+    <textarea id="samtext"></textarea>
+    <button id="brandonbutton" onclick=submitBrandon()>Submit</button>
+    <button id="sambutton" onclick=submitSam()>Submit</button>
+    <script>
+      let amount = [];
+      let host = "http://localhost:8080";
+      getPushups();
+        async function getAll() {
+        let response = await fetch(host + "/pushups");
+        let result = await response.json();
+        return result;
+      }
+      async function getPushups() {
+        var sam;
+        var brandon;
+      if (amount.length == 0) {
+        amount = await getAll();
+      }
+      for (let person of amount) {
+        if (person.name == "Sam") {
+          sam = person;
+        }
+        else brandon = person;
+      }
+    let div = document.getElementById("textLoc");
+    let inner = `<label id="brandon">Brandon: ${brandon.amount}</label>
+    <label id="sam">Sam: ${sam.amount}</label>`;
+    div.innerHTML = inner;
+  }
+  
+  async function submitBrandon() {
+    let pushup = {name: "Brandon", amount: 0};
+    let brandonText = document.getElementById("brandontext");
+    pushup.amount = brandonText.value;
+    let request = {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(pushup)
+                };
+                let response = await fetch(host + "/pushups", request);
+                if(response.status == 200) {
+                  console.log("Success!");
+                }
+                else {
+                  console.log("ERROR");
+                }
+                location.reload();
+  }
+
+  async function submitSam() {
+    let pushup = {name: "Sam", amount: 0};
+    let samText = document.getElementById("samtext");
+    pushup.amount = samText.value;
+    let request = {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(pushup)
+                };
+                let response = await fetch(host + "/pushups", request);
+                if(response.status == 200) {
+                  console.log("Success!");
+                }
+                else {
+                  console.log("ERROR");
+                }
+                location.reload();
+  }
+
+    </script>
+  </body>
+</html>
+
+

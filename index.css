@@ -1,0 +1,44 @@
+#brandon {
+    top: 50px;
+    position: absolute;
+    left: 50px;
+}
+#sam {
+    top: 50px;
+    position: absolute;
+    right: 150px;
+}
+#updateBrandonText {
+    top: 200px;
+    position: absolute;
+    left: 50px;
+}
+#updateSamText {
+    top: 200px;
+    position: absolute;
+    right: 150px;
+}
+#brandontext {
+    top: 200px;
+    position: absolute;
+    left: 125px;
+    width: 75px;
+    height: 25px;
+}
+#samtext {
+    top: 200px;
+    position: absolute;
+    right: 50px;
+    width: 75px;
+    height: 25px;
+}
+#brandonbutton {
+    top: 250px;
+    position: absolute;
+    left: 150px;
+}
+#sambutton {
+    top: 250px;
+    position: absolute;
+    right: 50px;
+}
